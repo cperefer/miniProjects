@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm --filter 01_profile_card_generator dev",
+    "profile-card": "pnpm --filter 01_profile_card_generator dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
