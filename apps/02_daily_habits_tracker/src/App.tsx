@@ -1,7 +1,7 @@
-import "./App.css";
+import TrackingApp from "./TrackingApp";
 
 function App() {
-  return <></>;
+  return <TrackingApp />;
 }
 
 export default App;
