@@ -1,9 +1,7 @@
 import HabitListItem from "./HabitListItem";
-import useSavedHabits from "./hooks/useSavedHabits";
+import type { Habit } from "./models/habit";
 
-export default function HabitTrackerList() {
-  const habits = useSavedHabits();
-
+export default function HabitTrackerList({ habits }: { habits: Habit[] }) {
   return (
     <div className="p-5">
       {!habits.length ? (

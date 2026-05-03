@@ -1,8 +1,18 @@
+import { useState } from "react";
 import HabitTrackerList from "./HabitTrackerList";
 import Heading from "./Heading";
 import NewHabit from "./NewHabit";
+import { insertHabit, loadHabits } from "./utils/persistence";
+import type { Habit } from "./models/habit";
 
 export default function TrackingApp() {
+  const [habits, setHabits] = useState<Habit[]>(loadHabits());
+
+  const addHabit = (habit: Habit) => {
+    setHabits((prev) => [...prev, habit]);
+    insertHabit(habit);
+  };
+
   return (
     <div className="flex flex-col h-dvh justify-center items-center">
       <div className="w-4/6 bg-background border border-border rounded-xl ">
@@ -11,9 +21,9 @@ export default function TrackingApp() {
             title="✔️ Mis Hábitos"
             subtitle="Cuenta lo que haces, cada día cuenta"
           />
-          <NewHabit />
+          <NewHabit addHabit={addHabit} />
         </div>
-        <HabitTrackerList />
+        <HabitTrackerList habits={habits} />
       </div>
     </div>
   );

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import type { Habit } from "./models/habit";
-import { insertHabit } from "./utils/persistence";
 import { habitTypes } from "./utils/HabitTypes";
 
-export default function NewHabit() {
+export default function NewHabit({
+  addHabit,
+}: {
+  addHabit: (newHabit: Habit) => void;
+}) {
   const [habit, setHabit] = useState("");
   const [type, setType] = useState("9999");
 
@@ -22,7 +25,7 @@ export default function NewHabit() {
       timesDone: 0,
     };
 
-    insertHabit(newHabit);
+    addHabit(newHabit);
   };
 
   return (
