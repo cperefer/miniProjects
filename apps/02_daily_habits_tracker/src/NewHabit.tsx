@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { habitTypes } from "./utils/HabitTypes";
 import type { Habit } from "./models/habit";
 import { insertHabit } from "./utils/persistence";
+import { habitTypes } from "./utils/HabitTypes";
 
 export default function NewHabit() {
   const [habit, setHabit] = useState("");
   const [type, setType] = useState("9999");
 
+  // habits tiene que ser un estado global, este handler tiene que llamar a una funcion superior.
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (type === "9999") {
@@ -14,7 +15,7 @@ export default function NewHabit() {
     }
 
     const newHabit: Habit = {
-      id: 0,
+      id: Math.floor(Math.random() * 100000) + 1,
       type,
       name: habit,
       createdAt: Date.now(),
