@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { habitTypes } from "./utils/HabitTypes";
+import type { Habit } from "./models/habit";
+import { insertHabit } from "./utils/persistence";
 
 export default function NewHabit() {
   const [habit, setHabit] = useState("");
@@ -7,8 +9,19 @@ export default function NewHabit() {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log("click");
-    console.log({ habit, type });
+    if (type === "9999") {
+      return;
+    }
+
+    const newHabit: Habit = {
+      id: 0,
+      type,
+      name: habit,
+      createdAt: Date.now(),
+      timesDone: 0,
+    };
+
+    insertHabit(newHabit);
   };
 
   return (
@@ -30,7 +43,7 @@ export default function NewHabit() {
           {habitTypes.map(({ name, id }) => (
             <option
               key={id}
-              value={id}
+              value={name}
               className={`before:content-['·'] before:w-20 before:h-20`}
             >
               {/* <span className="block w-2 h-2 bg-amber-500"></span> */}
@@ -40,7 +53,7 @@ export default function NewHabit() {
         </select>
         <button
           onClick={handleClick}
-          className="bg-primary text-white p-3 px-5 rounded-md"
+          className="bg-primary text-white p-3 px-5 rounded-md cursor-pointer"
         >
           + Añadir
         </button>
