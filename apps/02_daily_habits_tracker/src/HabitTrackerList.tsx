@@ -33,6 +33,7 @@ export default function HabitTrackerList({
             <div>
               {habits.map((habit) => (
                 <HabitListItem
+                  key={habit.id}
                   habit={habit}
                   updateHabit={updateHabit}
                   deleteHabit={deleteHabit}
