@@ -1,18 +1,16 @@
-import { useState } from "react";
-
 interface Props {
   timesDone: number;
   color: string;
+  updateHabit: (timesDone: number) => void;
 }
 
-export default function HabitCounter({ timesDone, color }: Props) {
-  const [habitTimesDone, setHabitTimesDone] = useState(timesDone);
-
+export default function HabitCounter({ timesDone, color, updateHabit }: Props) {
   const updateTimesDone = (val: number) => {
-    if (val < 0 && habitTimesDone === 0) {
+    if (val < 0 && timesDone === 0) {
       return;
     }
-    setHabitTimesDone((prev) => prev + val);
+
+    updateHabit(timesDone + val);
   };
 
   return (
@@ -29,7 +27,7 @@ export default function HabitCounter({ timesDone, color }: Props) {
         style={{ color }}
         className="font-bold w-1/3 flex flex-col items-center text-2xl"
       >
-        {habitTimesDone}
+        {timesDone}
       </div>
       <div className="w-1/3 flex flex-col items-center text-2xl">
         <button

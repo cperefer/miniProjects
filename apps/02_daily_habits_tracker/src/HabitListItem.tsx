@@ -3,9 +3,23 @@ import HabitItem from "./HabitItem";
 import type { Habit } from "./models/habit";
 import { habitTypes } from "./utils/HabitTypes";
 
-export default function HabitListItem({ habit }: { habit: Habit }) {
+interface Props {
+  habit: Habit;
+  updateHabit: (id: number, timesDone: number) => void;
+  deleteHabit: (id: number) => void;
+}
+
+export default function HabitListItem({
+  habit,
+  updateHabit,
+  deleteHabit,
+}: Props) {
   const habitType = habitTypes.filter((type) => type.name === habit.type)[0];
   const { primary, secondary } = habitType.colors;
+
+  const updateHabitFromCounter = (timesDone: number) => {
+    updateHabit(habit.id, timesDone);
+  };
 
   return (
     <div
@@ -19,9 +33,17 @@ export default function HabitListItem({ habit }: { habit: Habit }) {
         habitType={habitType.name}
         icon={habitType.icon}
       />
-      <HabitCounter timesDone={habit.timesDone} color={primary} />
-      <div>reset</div>
-      <div>delete</div>
+      <HabitCounter
+        timesDone={habit.timesDone}
+        color={primary}
+        updateHabit={updateHabitFromCounter}
+      />
+      <div className="cursor-pointer" onClick={() => updateHabit(habit.id, 0)}>
+        reset
+      </div>
+      <div className="cursor-pointer" onClick={() => deleteHabit(habit.id)}>
+        delete
+      </div>
     </div>
   );
 }

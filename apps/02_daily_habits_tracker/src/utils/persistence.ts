@@ -30,10 +30,16 @@ function deleteHabit(id: number) {
   const filteredHabits = savedHabits.filter((habit) => habit.id !== id);
 
   localStorage.setItem(HABITS, JSON.stringify(filteredHabits));
+  console.log(`habit id ${id} deleted from local storage`);
+}
+
+function saveHabits(habits: Habit[]) {
+  console.log("Saving habits");
+  localStorage.setItem(HABITS, JSON.stringify(habits));
 }
 
 function clearHabits() {
   localStorage.removeItem(HABITS);
 }
 
-export { loadHabits, insertHabit, deleteHabit, clearHabits };
+export { loadHabits, insertHabit, deleteHabit, clearHabits, saveHabits };

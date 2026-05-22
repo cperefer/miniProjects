@@ -1,7 +1,17 @@
 import HabitListItem from "./HabitListItem";
 import type { Habit } from "./models/habit";
 
-export default function HabitTrackerList({ habits }: { habits: Habit[] }) {
+interface Props {
+  habits: Habit[];
+  updateHabit: (id: number, timesDone: number) => void;
+  deleteHabit: (id: number) => void;
+}
+
+export default function HabitTrackerList({
+  habits,
+  updateHabit,
+  deleteHabit,
+}: Props) {
   return (
     <div className="p-5">
       {!habits.length ? (
@@ -17,7 +27,11 @@ export default function HabitTrackerList({ habits }: { habits: Habit[] }) {
           <div className="mt-4">
             <div>
               {habits.map((habit) => (
-                <HabitListItem habit={habit} />
+                <HabitListItem
+                  habit={habit}
+                  updateHabit={updateHabit}
+                  deleteHabit={deleteHabit}
+                />
               ))}
             </div>
           </div>
