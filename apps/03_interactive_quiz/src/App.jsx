@@ -1,11 +1,7 @@
-import "./App.css";
+import QuizApp from "./components/QuizApp";
 
 function App() {
-  return (
-    <>
-      <p>Interactive Quiz</p>
-    </>
-  );
+  return <QuizApp />;
 }
 
 export default App;
