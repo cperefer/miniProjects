@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HabitTrackerList from "./HabitTrackerList";
 import Heading from "./Heading";
 import NewHabit from "./NewHabit";
@@ -39,9 +39,14 @@ export default function TrackingApp() {
     console.log(habits);
   };
 
-  useEffect(() => {
-    console.log("RENDER", habits);
-  }, [habits]);
+  const resetAllHabits = () => {
+    setHabits((prev) => {
+      const updated = prev.map((habit) => ({ ...habit, timesDone: 0 }));
+      saveHabits(updated);
+
+      return updated;
+    });
+  };
 
   return (
     <div className="flex flex-col h-dvh justify-center items-center">
@@ -57,6 +62,7 @@ export default function TrackingApp() {
           habits={habits}
           updateHabit={updateHabit}
           deleteHabit={deleteHabit}
+          resetAllHabits={resetAllHabits}
         />
       </div>
     </div>

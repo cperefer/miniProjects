@@ -5,12 +5,14 @@ interface Props {
   habits: Habit[];
   updateHabit: (id: number, timesDone: number) => void;
   deleteHabit: (id: number) => void;
+  resetAllHabits: () => void;
 }
 
 export default function HabitTrackerList({
   habits,
   updateHabit,
   deleteHabit,
+  resetAllHabits,
 }: Props) {
   return (
     <div className="p-5">
@@ -20,7 +22,10 @@ export default function HabitTrackerList({
         <div className="pl-2">
           <div className="flex flex-row justify-between">
             <h2 className="text-xl block w-fit">Hoy</h2>
-            <button className="p-2 border border-primary/20 text-primary font-bold rounded-xl cursor-pointer block w-fit bg-primary-light">
+            <button
+              className="p-2 border border-primary/20 text-primary font-bold rounded-xl cursor-pointer block w-fit bg-primary-light"
+              onClick={resetAllHabits}
+            >
               🔄️ Reset diario
             </button>
           </div>
