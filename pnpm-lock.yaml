@@ -140,7 +140,7 @@ importers:
         specifier: ^8.0.10
         version: 8.0.10(@types/node@24.12.2)(jiti@2.6.1)
 
-  apps/02_interactive_quiz:
+  apps/03_interactive_quiz:
     dependencies:
       react:
         specifier: ^19.2.6

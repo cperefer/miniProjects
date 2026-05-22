@@ -6,6 +6,7 @@
   "scripts": {
     "profile-card": "pnpm --filter 01_profile_card_generator dev",
     "daily-tracker": "pnpm --filter 02_daily_habits_tracker dev",
+    "quiz": "pnpm --filter 03_interactive_quiz dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
